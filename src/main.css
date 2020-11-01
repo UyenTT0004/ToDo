@@ -1,0 +1,52 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Header Style */
+.header {
+	background-color: #ebebeb;
+	padding: 30px;
+	text-align: center;
+	font-size: 35px;
+}
+
+/* Create collumns - unequal sized */
+.column {
+	float: left;
+	padding: 10px;
+	height: 600px;
+}
+
+/* Collumn sides */
+.column.side {
+	width: 25%;
+}
+
+/* Middle column */
+.column.middle {
+	width: 50%;
+}
+
+/* Clear floats after columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* style footer */
+.footer {
+	background-color: #ebebeb;
+	padding: 10px;
+	text-align: center;
+}
+
+@media (max-width: 600px) {
+	.column.side, .column.middle {
+		width: 100%;
+	}
+}
