@@ -14,7 +14,6 @@ DEFS_Debug := \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-DOPENSSL_NO_PINSHARED' \
 	'-DOPENSSL_THREADS' \
-	'-DBUILDING_NODE_EXTENSION' \
 	'-DDEBUG' \
 	'-D_DEBUG' \
 	'-DV8_ENABLE_CHECKS'
@@ -40,7 +39,8 @@ CFLAGS_CC_Debug := \
 	-stdlib=libc++ \
 	-fno-rtti \
 	-fno-exceptions \
-	-fno-strict-aliasing
+	-std=c++11 \
+	-stdlib=libc++
 
 # Flags passed to only ObjC files.
 CFLAGS_OBJC_Debug :=
@@ -68,8 +68,7 @@ DEFS_Release := \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-DOPENSSL_NO_PINSHARED' \
-	'-DOPENSSL_THREADS' \
-	'-DBUILDING_NODE_EXTENSION'
+	'-DOPENSSL_THREADS'
 
 # Flags passed to all source files.
 CFLAGS_Release := \
@@ -92,7 +91,8 @@ CFLAGS_CC_Release := \
 	-stdlib=libc++ \
 	-fno-rtti \
 	-fno-exceptions \
-	-fno-strict-aliasing
+	-std=c++11 \
+	-stdlib=libc++
 
 # Flags passed to only ObjC files.
 CFLAGS_OBJC_Release :=
@@ -110,7 +110,8 @@ INCS_Release := \
 	-I/Users/taylor/Library/Caches/node-gyp/14.15.0/deps/v8/include
 
 OBJS := \
-	$(obj).target/$(TARGET)/src/binding.o
+	$(obj).target/$(TARGET)/task.o \
+	$(obj).target/$(TARGET)/taskMan.o
 
 # Add to the list of files we specially track dependencies for.
 all_deps += $(OBJS)
@@ -125,21 +126,21 @@ $(OBJS): GYP_OBJCXXFLAGS := $(DEFS_$(BUILDTYPE)) $(INCS_$(BUILDTYPE))  $(CFLAGS_
 
 # Suffix rules, putting all outputs into $(obj).
 
-$(obj).$(TOOLSET)/$(TARGET)/%.o: $(srcdir)/%.cc FORCE_DO_CMD
+$(obj).$(TOOLSET)/$(TARGET)/%.o: $(srcdir)/%.cpp FORCE_DO_CMD
 	@$(call do_cmd,cxx,1)
 
 # Try building from generated source, too.
 
-$(obj).$(TOOLSET)/$(TARGET)/%.o: $(obj).$(TOOLSET)/%.cc FORCE_DO_CMD
+$(obj).$(TOOLSET)/$(TARGET)/%.o: $(obj).$(TOOLSET)/%.cpp FORCE_DO_CMD
 	@$(call do_cmd,cxx,1)
 
-$(obj).$(TOOLSET)/$(TARGET)/%.o: $(obj)/%.cc FORCE_DO_CMD
+$(obj).$(TOOLSET)/$(TARGET)/%.o: $(obj)/%.cpp FORCE_DO_CMD
 	@$(call do_cmd,cxx,1)
 
 # End of this set of suffix rules
 ### Rules for final target.
 LDFLAGS_Debug := \
-	-undefined dynamic_lookup \
+	-stdlib=libc++ \
 	-Wl,-no_pie \
 	-Wl,-search_paths_first \
 	-mmacosx-version-min=10.13 \
@@ -148,12 +149,12 @@ LDFLAGS_Debug := \
 	-stdlib=libc++
 
 LIBTOOLFLAGS_Debug := \
-	-undefined dynamic_lookup \
+	-stdlib=libc++ \
 	-Wl,-no_pie \
 	-Wl,-search_paths_first
 
 LDFLAGS_Release := \
-	-undefined dynamic_lookup \
+	-stdlib=libc++ \
 	-Wl,-no_pie \
 	-Wl,-search_paths_first \
 	-mmacosx-version-min=10.13 \
@@ -162,29 +163,26 @@ LDFLAGS_Release := \
 	-stdlib=libc++
 
 LIBTOOLFLAGS_Release := \
-	-undefined dynamic_lookup \
+	-stdlib=libc++ \
 	-Wl,-no_pie \
 	-Wl,-search_paths_first
 
 LIBS :=
 
-$(builddir)/binding.node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
-$(builddir)/binding.node: LIBS := $(LIBS)
-$(builddir)/binding.node: GYP_LIBTOOLFLAGS := $(LIBTOOLFLAGS_$(BUILDTYPE))
-$(builddir)/binding.node: TOOLSET := $(TOOLSET)
-$(builddir)/binding.node: $(OBJS) FORCE_DO_CMD
-	$(call do_cmd,solink_module)
+$(builddir)/binding: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
+$(builddir)/binding: LIBS := $(LIBS)
+$(builddir)/binding: GYP_LIBTOOLFLAGS := $(LIBTOOLFLAGS_$(BUILDTYPE))
+$(builddir)/binding: LD_INPUTS := $(OBJS)
+$(builddir)/binding: TOOLSET := $(TOOLSET)
+$(builddir)/binding: $(OBJS) FORCE_DO_CMD
+	$(call do_cmd,link)
 
-all_deps += $(builddir)/binding.node
+all_deps += $(builddir)/binding
 # Add target alias
 .PHONY: binding
-binding: $(builddir)/binding.node
-
-# Short alias for building this executable.
-.PHONY: binding.node
-binding.node: $(builddir)/binding.node
+binding: $(builddir)/binding
 
 # Add executable to "all" target.
 .PHONY: all
-all: $(builddir)/binding.node
+all: $(builddir)/binding
 
