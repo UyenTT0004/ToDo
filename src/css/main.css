@@ -45,6 +45,7 @@ body {
 }
 
 .btn {
+	position: relative;
 	background-color: #ededed;
 	height: 80px;
 	width: 80px;
@@ -54,10 +55,41 @@ body {
 	font-size: 40px;
 	cursor: pointer;
 	border-radius: 50%;
+	transition: transform 2s;
 }
 
+.btn a {
+	display: block;
+	text-decoration: none;
+}
+
+/*
+.btn:after,
+.btn:before {
+	position: absolute;
+	content: "";
+	display: block;
+	z-index: 1;
+	
+}
+
+.btn:after {
+	top: 20px;
+	bottom: 20px;
+	left: 24px;
+	right: 24px;
+}
+
+.btn:before {
+	top: 24px;
+	bottom: 24px;
+	left: 20px;
+	right: 20px;
+}
+*/
 .btn:hover {
 	background-color: #adadad;
+	/*transform: rotate(360deg);*/
 }
 
 .overlay {
