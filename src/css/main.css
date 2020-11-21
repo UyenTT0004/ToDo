@@ -111,10 +111,11 @@ body {
 
 .popup {
 	margin: 70px auto;
-	padding: 20px;
+	padding: 10px;
 	background: #fff;
 	border-radius: 5px;
-	width: 30%;
+	width: 50%;
+	height: 30%;
 	position: relative;
 	transition: all 5s ease-in-out;
 }
