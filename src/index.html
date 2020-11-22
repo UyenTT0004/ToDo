@@ -7,7 +7,7 @@
 		<meta charset="utf-8">
 		<title>ToDo</title>
 		<link rel="stylesheet" type="text/css" href="css/main.css">
-		<script src="app.js"></script>
+		<script type="text/javascript" src="app.js"></script>
 	</head>
 
 
@@ -19,8 +19,17 @@
 			<h2>ToDo</h2>
 		</div>
 
+                <div class ="content">
+                        <h2>Tasks:</h2>
+                        <ul id="myUL">
+                                <li>Make task list variable</li>
+                                <li>Connect backend</li>
+                                <li>Create login page</li>
+                                <li>Idk maybe a nap that sounds nice</li>
+                        </ul>
+
 		<div class="sidenav">
-			<button class = "btn" onclick="addTask()"><a href="#popup1">
+			<button class = "btn"><a href="#popup1">
 				+
 			</a>
 			<button class = "btn"><a href="#popup2">
@@ -32,9 +41,10 @@
 		<div id="popup1" class="overlay">
 			<div class="popup">
 				<h2>Add task:</h2>
-				<a class="close" href="#">x</a>
+				<a class="popclose" href="#">x</a>
 				<p>Name <input type="text"></p>
 				<p>Description <textarea rows="8" cols="32"></textarea></p>
+				<button onclick="newTask()"><a href="#">Submit</a>
 			</div>
 		</div> 
 
@@ -48,10 +58,8 @@
                         </div>
                 </div>
 
-
-                
-		<div class ="content">
-			<h2>Tasks:</h2>
+			<script src="app.js"></script>
+			
 		</div>
 
 		<div class="footer">
