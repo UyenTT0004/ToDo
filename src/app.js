@@ -32,12 +32,12 @@ list.addEventListener('click', function(ev) {
 
 
 //create new item when clicking add
-function newTask() {
+function newTask(taskname) {
 	var li = document.createElement("li");
-	var inVal = document.getElementById("myInput").value;
+	var inVal = document.getElementById('taskname').value;
 	var t = document.createTextNode(inVal);
 	li.appendChild(t);
-	if(inVal === '') {
+	if(taskname === '') {
 		alert("no input given");
 	} else {
 		document.getElementById("myUL").appendChild(li);
@@ -50,6 +50,9 @@ function newTask() {
 	span.className = "close";
 	span.appendChild(txt);
 	li.apendChild(span);
+
+	var close = document.getElementByClassName("close");
+	var i;
 
 	for(i = 0; i < close.length; i++) {
 		close[i].onclick = function() {

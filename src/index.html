@@ -42,16 +42,16 @@
 			<div class="popup">
 				<h2>Add task:</h2>
 				<a class="popclose" href="#">x</a>
-				<p>Name <input type="text"></p>
+				<p>Name <input type="text" name="taskname" id="taskname"></p>
 				<p>Description <textarea rows="8" cols="32"></textarea></p>
-				<button onclick="newTask()"><a href="#">Submit</a>
+				<button onclick="newTask(taskname)"><a href="#">Submit</a>
 			</div>
 		</div> 
 
                 <div id="popup2" class="overlay">
                         <div class="popup">
                                 <h2>Remove task:</h2>
-                                <a class="close" href="#">x</a>
+                                <a class="popclose" href="#">x</a>
                                 <div class = "content">
                                         Choose task(s) to delete:
                                 </div>
@@ -68,3 +68,4 @@
 
 	</body>
 </html>
+
