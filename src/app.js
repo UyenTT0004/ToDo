@@ -5,7 +5,7 @@ var myList = document.getElementsByTagName("LI");
 var i;
 for (i = 0; i < myList.length; i++) {
 	var span = document.createElement("SPAN");
-	var txt = document.createTextNode("\u00D7");
+	var txt = document.createTextNode("\u270E");
 	span.className = "close";
 	span.appendChild(txt);
 	myList[i].appendChild(span);
@@ -37,22 +37,20 @@ function newTask(taskname) {
 	var inVal = document.getElementById('taskname').value;
 	var t = document.createTextNode(inVal);
 	li.appendChild(t);
-	if(taskname === '') {
+	if(inVal === '') {
 		alert("no input given");
 	} else {
 		document.getElementById("myUL").appendChild(li);
 	}
 
-	document.getElementById("myInput").value = "";
+	document.getElementById("taskname").value = "";
+
 
 	var span = document.createElement("SPAN");
-	var txt = document.createTextNode("\u00D7");
+	var txt = document.createTextNode("\u270E");
 	span.className = "close";
 	span.appendChild(txt);
-	li.apendChild(span);
-
-	var close = document.getElementByClassName("close");
-	var i;
+	li.appendChild(span);
 
 	for(i = 0; i < close.length; i++) {
 		close[i].onclick = function() {
@@ -62,3 +60,20 @@ function newTask(taskname) {
 	}
 }
 
+
+function listTasks() {
+	var myList = document.getElementsByTagName("LI");
+	var i;
+
+	for(i = 0; i < myList.length; i++) {
+
+	}
+}
+
+function deleteTask(taskname) {
+
+}
+
+function editTask(taskname) {
+
+}
