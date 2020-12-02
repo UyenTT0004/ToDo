@@ -2,7 +2,7 @@
 using namespace std;
 
 task::task() {
-    name="null";
+    title="null";
     status= false;
     date="null";
     time=-1;
@@ -10,9 +10,9 @@ task::task() {
 };
 
 //setter
-void task::setName( string inputName)
+void task::setTitle( string inputTitle)
 {
-    name=inputName;
+    title=inputTitle;
     return;
 }
 
@@ -43,9 +43,9 @@ void task::setDes(string inputDes)
 
 //getter
 
-string task::getName()
+string task::getTitle()
 {
-    return name;
+    return title;
 }
 
 bool task::getStatus ()
