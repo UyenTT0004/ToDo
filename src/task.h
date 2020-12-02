@@ -12,7 +12,7 @@ using namespace std;
 class task {
 private:
 
-string name;
+string title;
 bool status;
 string date;
 int time;
@@ -22,13 +22,13 @@ string description;
 public:
 task(); //default contructor
 
-void setName(string inputName);
+void setTitle(string inputTitle);
 void setStatus(int curStatus);
 void setDate(string inputDate);
 void setTime(int inputTime);
 void setDes(string inputDes);
 
-string getName();
+string getTitle();
 bool getStatus();
 string getDate();
 int getTime();
