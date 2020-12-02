@@ -51,11 +51,12 @@ bool user::deleteTask(string title)
 {
     //NEED MODIFY
     bool result=false;
-    int i=taskList.size();
-    while(i>0&&result!=true)
+    int i=taskList.size()-1;
+    while(i>=0&&result!=true)
     {
         if (title.compare(taskList[i].getTitle())==0)
-        {taskList.erase(taskList.begin()+i-1);result=true;}
+        {taskList.erase(taskList.begin()+i);result=true;}
+        i--;
     }
     return result;
 }
