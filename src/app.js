@@ -37,7 +37,9 @@ list.addEventListener('click', function(ev) {
 	}
 }, false);
 
-
+function goto(url) {
+	window.location=url;
+}
 
 //create new item when clicking add
 function newTask(taskname, taskdesc) {
