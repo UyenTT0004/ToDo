@@ -70,7 +70,7 @@ body {
 
 .setting {
 	position: relative;
-	padding: 12px 8px 12px 30px;
+	padding: 12px 8px 12px 15px;
 	background: #eee;
 	font-size: 18px;
 }
@@ -101,12 +101,12 @@ body {
 }
 
 .popup {
-	margin: 70px auto;
+	margin: 40px auto;
 	padding: 10px;
 	background: #fff;
 	border-radius: 5px;
 	width: 50%;
-	height: 30%;
+	height: 50%;
 	position: relative;
 	transition: all 5s ease-in-out;
 }
@@ -127,7 +127,8 @@ body {
 }
 
 .popup .content {
-	max-height: 30%;
+	max-height: 80%;
+	display: block;
 	overflow: auto;
 }
 
