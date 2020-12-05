@@ -29,6 +29,31 @@ for (i = 0; i < close.length; i++) {
 var edit = document.getElementsByClassName("edit");
 
 
+
+for(i = 0; i < edit.length; i++) {
+	edit[i].onclick = function() {
+		var div = this.parentElement;
+		var newdiv = document.createElement('div')
+
+		var p = prompt("Edit your task:");
+		newdiv.innerHTML = p;
+
+
+		while (newdiv.firstChild) {
+			div.appendChild(newdiv.firstChild);
+		}
+		if(div.hasChildNodes()) {
+			div.removeChild(div.childNodes[0]);
+		}
+
+	}
+}
+
+
+
+
+
+
 //add checked symbol when clicked
 var list = document.querySelector('ul');
 list.addEventListener('click', function(ev) {

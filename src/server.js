@@ -1,16 +1,19 @@
 var express = require('express');
 var app = express();
-/*
+//var dotenv = require('dotenv');
 var mongoose = require('mongoose');
 
 
-//Connect to DB
-mongoose.connect(/*url*//*
+//dotenv.config();
+
+/*//Connect to DB
+mongoose.connect(
+	process.env.DB_CONNECT),
 	{ useNewUrlParser: true },
 	() => console.log('connected to db!')
-);
+);*/
 
-*/
+
 
 var bodyParser = require("body-parser");
 
