@@ -118,3 +118,6 @@ function editTask(taskname) {
 
 }
 
+function goHome() {
+	window.location = '/';
+}

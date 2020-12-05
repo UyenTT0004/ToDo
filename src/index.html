@@ -45,7 +45,7 @@
 				<a class="popclose" href="#">x</a>
 				<p>Name: <br><input type="text" name="taskname" id="taskname"></p>
 				<p>Description: <br><textarea rows="8" cols="32" name="taskdesc" id="taskdesc"></textarea></p>
-				<button onclick="newTask(taskname, taskdesc)"><a href="#">Submit</a>
+				<button class="btn_pop" onclick="newTask(taskname, taskdesc)">Submit</button>
 			</div>
 		</div> 
 
@@ -73,7 +73,7 @@
 					<p>Old password:<br><input type="text" name="oldpass" id="oldpass"></p>
 					<p>New password:<br><input type="text" name="pass" id="pass"></p>
 					<p>Re-enter new password:<br><input type="text" name="pass" id="pass"></p>
-
+                                        <button class = "btn_pop">Submit</button>
 				</div>
 			</div>
 		</div>
@@ -87,7 +87,7 @@
                                         <p>Old username:<br><input type="text" name="oldpass" id="oldpass"></p>
                                         <p>New username:<br><input type="text" name="pass" id="pass"></p>
                                         <p>Re-enter new username:<br><input type="text" name="pass" id="pass"></p>
-
+                                        <button class = "btn_pop">Submit</button>
                                 </div>
                         </div>
                 </div>
@@ -98,8 +98,8 @@
                         <a class = "popclose" href="#">x</a>
                                 <div class = "content">
 					<p>Delete your account?</p>
-					<button class="btnsetting"  onClick="">Yes</button>
-					<button class="btnsetting" onClick="">No</button>
+					<button class="btn_choice"  onClick="">Yes</button>
+					<button class="btn_choice" onClick="goHome()">No</button>
                                 </div>
                         </div>
                 </div>

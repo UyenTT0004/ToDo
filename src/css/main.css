@@ -68,8 +68,24 @@ body {
 	transform: rotate(360deg);
 }
 
-/* styling for buttons in settings page*/
-.btnsetting {
+/*styling for popup buttons*/
+.btn_pop {
+	position: relative;
+	background-color: #ededed;
+	width: 90px;
+        height: 30px;
+	font-weight: bold;
+        margin: 3px;
+        text-align: center;
+        cursor: pointer;
+}
+
+.btn_pop:hover {
+	background-color: #adadad;
+}
+
+/* styling for "yes"/"no" buttons in settings page*/
+.btn_choice {
 	position: relative;
 	background-color: #ededed;
 	width: 30%;
@@ -80,7 +96,7 @@ body {
 	cursor: pointer;
 }
 
-.btn:hover {
+.btn_choice:hover {
 	background-color: #adadad;
 }
 
