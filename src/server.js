@@ -8,7 +8,7 @@ var bodyParser = require("body-parser");
 const userRouter= require('./routes/users');
 
 const taskRouter= require('./routes/tasks');
-//app.use(express.static(__dirname));
+app.use(express.static(__dirname));
 
 app.use(bodyParser.urlencoded({extended: false }));
 
