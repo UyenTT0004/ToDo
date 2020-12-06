@@ -6,6 +6,7 @@ var bodyParser = require("body-parser");
 //Import routes
 
 const userRouter= require('./routes/users');
+const taskRouter= require('./routes/tasks');
 //app.use(express.static(__dirname));
 
 app.use(bodyParser.urlencoded({extended: false }));
@@ -30,6 +31,7 @@ app.get('/', function (req, res) {
 
 //route middleware
 app.use('/user',userRouter);
+app.use('/task',taskRouter);
 
 // This responds a POST request for the homepage
 app.post('/', function (req, res) {
