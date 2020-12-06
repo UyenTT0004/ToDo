@@ -1,5 +1,5 @@
-const router = require('express').Router()
-const Task = require('../models/Task')
+const router = require('express').Router();
+const Task = require('../models/Task');
 
 router.get('/',(req, res) =>{
     console.log("Got a GET request for the task page");
@@ -13,8 +13,8 @@ router.post('/add', async (req,res)=>{
         description: req.body.description
     });
     try {
-        const savedTask = await task.save()
-        res.send(savedTask)
+        const savedTask = await task.save();
+        res.send(savedTask);
     } catch (err){
         res.status(400).send(err);
     }
