@@ -6,7 +6,7 @@ var bodyParser = require("body-parser");
 //Import routes
 
 const userRouter= require('./routes/users');
-//app.use(express.static(__dirname));
+app.use(express.static(__dirname));
 
 app.use(bodyParser.urlencoded({extended: false }));
 
@@ -17,9 +17,9 @@ mongoose.connect(process.env.DB_CONNECT,
 const db =mongoose.connection
 //report error if connect to db fail
 db.on('error',error => console.error(error))
-db.once('open',()=>console.log("connect to DB"))
+db.once('open',()=>console.log("connect to DB"));
 //middleware
-app.use(express.json())
+app.use(express.json());
 
 
 // This responds with "Hello World" on the homepage
