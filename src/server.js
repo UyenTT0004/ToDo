@@ -1,31 +1,35 @@
 var express = require('express');
+const dotenv =require('dotenv');
 var app = express();
-//var dotenv = require('dotenv');
-var mongoose = require('mongoose');
-
-
-//dotenv.config();
-
-/*//Connect to DB
-mongoose.connect(
-	process.env.DB_CONNECT),
-	{ useNewUrlParser: true },
-	() => console.log('connected to db!')
-);*/
-
-
-
+const mongoose = require('mongoose');
 var bodyParser = require("body-parser");
+//Import routes
 
-app.use(express.static(__dirname));
+const userRouter= require('./routes/users');
+//app.use(express.static(__dirname));
 
 app.use(bodyParser.urlencoded({extended: false }));
+
+//connect to db
+dotenv.config();
+mongoose.connect(process.env.DB_CONNECT,
+   { useNewUrlParser: true });
+const db =mongoose.connection
+//report error if connect to db fail
+db.on('error',error => console.error(error))
+db.once('open',()=>console.log("connect to DB"))
+//middleware
+app.use(express.json())
+
 
 // This responds with "Hello World" on the homepage
 app.get('/', function (req, res) {
    console.log("Got a GET request for the homepage");
    res.sendFile(__dirname + '/index.html');
 })
+
+//route middleware
+app.use('/user',userRouter);
 
 // This responds a POST request for the homepage
 app.post('/', function (req, res) {
