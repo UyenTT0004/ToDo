@@ -1,6 +1,24 @@
+<div>
 <label>Name</label>
-<input type="text" name="name" value=<%=locals.user.name%>>
+<input type="text" name="name"
+<% if (locals.user !=null) { %>
+   value="<%=user.name%>"
+<%}%>
+>
+</div>
+<div>
 <label>Email</label>
-<input type="text" name="email" value=<%=locals.user.email%>>
+<input type="text" name="email"
+<% if (locals.user !=null) { %>
+value="<%=user.email%>"
+<%}%>
+>
+</div>
+<div>
 <label>Password</label>
-<input type="text" name="password" value=<%=locals.user.password%>>
+<input type="text" name="password"
+<% if (locals.user !=null) { %>
+value="<%=user.password%>"
+<%}%>
+>
+</div>

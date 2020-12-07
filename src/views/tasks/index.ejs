@@ -1,3 +1,7 @@
-task list
 
-<a href = "/task/add">Cancel</a>
+
+<% if (locals.taskList !=null) { %>
+    <%= errorMessage %>
+<%}%>
+
+<a href = "/task/add">add</a>
