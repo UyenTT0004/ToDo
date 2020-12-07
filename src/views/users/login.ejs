@@ -1,0 +1,10 @@
+<h2>log in</h2>
+<form action ="/user/login_" method="POST" >
+    <label>Email</label>
+    <input type="text" name="email" value=<%=user.email%>>
+    <label>Password</label>
+    <input type="text" name="password" value=<%=user.password%>>
+    <a href = "/">Cancel</a>
+    <a href = "/user/register">Register</a>
+<button type="submit"> Log in</button>
+</form>

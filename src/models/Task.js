@@ -9,13 +9,15 @@ const taskSchema = new mongoose.Schema({
     description: {
         type:String,
         max: 255
-    }
-    /*,
+    },
+    date: {
+        type: Date
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
+        required: true,
         ref: 'User'
     }
-    */
 
 });
 

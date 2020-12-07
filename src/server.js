@@ -1,16 +1,22 @@
-var express = require('express');
+const express = require('express');
+const app = express();
 const dotenv =require('dotenv');
-var app = express();
+const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
+
+// set up view engine
+app.set('view engine','ejs');
+app.set('views', __dirname+'/views');
+app.set('layout','layouts/layout');
+app.use(expressLayouts);
+app.use(express.static('public'))
 //Import routes
-
+const indexrouter =require('./routes/index');
 const userRouter= require('./routes/users');
-
 const taskRouter= require('./routes/tasks');
-app.use(express.static(__dirname));
 
-app.use(bodyParser.urlencoded({extended: false }));
+app.use(bodyParser.urlencoded({limit: '10mb',extended: false}) );
 
 //connect to db
 dotenv.config();
@@ -19,44 +25,15 @@ mongoose.connect(process.env.DB_CONNECT,
 const db =mongoose.connection
 //report error if connect to db fail
 db.on('error',error => console.error(error))
-db.once('open',()=>console.log("connect to DB"));
+db.once('open',()=>console.log("connect to DB!"));
+
 //middleware
 app.use(express.json());
 
-
-// This responds with "Hello World" on the homepage
-app.get('/', function (req, res) {
-   console.log("Got a GET request for the homepage");
-   res.sendFile(__dirname + '/index.html');
-})
-
 //route middleware
+app.use('/',indexrouter);
 app.use('/user',userRouter);
 app.use('/task',taskRouter);
-
-// This responds a POST request for the homepage
-app.post('/', function (req, res) {
-   console.log("Got a POST request for the homepage");
-   res.send('Hello POST');
-})
-
-// This responds a DELETE request for the /del_user page.
-app.delete('/del_user', function (req, res) {
-   console.log("Got a DELETE request for /del_user");
-   res.send('Hello DELETE');
-})
-
-// This responds a GET request for the /list_user page.
-app.get('/list_user', function (req, res) {
-   console.log("Got a GET request for /list_user");
-   res.send('Page Listing');
-})
-
-// This responds a GET request for abcd, abxcd, ab123cd, and so on
-app.get('/ab*cd', function(req, res) {   
-   console.log("Got a GET request for /ab*cd");
-   res.send('Page Pattern Match');
-})
 
 var server = app.listen(8081, function () {
    var host = server.address().address
